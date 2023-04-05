@@ -1,0 +1,5 @@
+{
+  "serverPort": 5000,
+  "dbUrl": "mongodb+srv://vanakupnevskij:vanya-1251007@disk.mhxbtqr.mongodb.net/?retryWrites=true&w=majority",
+  "secretJwt": "mern cloud_disk vanya"
+}

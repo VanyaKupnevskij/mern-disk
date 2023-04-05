@@ -1,0 +1,27 @@
+{
+  "name": "mern_disk",
+  "version": "1.0.0",
+  "description": "mern disk learn",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "mern",
+    "cloud"
+  ],
+  "author": "Kupnevskij Ivan <vanakupnevskij@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
