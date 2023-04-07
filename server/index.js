@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
 const authRouter = require('./routes/auth.routes');
+const corsMiddleware = require('./midleware/cors.middleware');
 
 const app = express();
 
+app.use(corsMiddleware);
 app.use(express.json({ extended: true }));
 
 app.use('/api/auth', authRouter);
