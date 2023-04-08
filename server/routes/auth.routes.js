@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
+const authMiddleware = require('../midleware/auth.middleware');
 
 const router = new Router();
 
@@ -58,6 +59,29 @@ router.post('/login', async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Failed login. Try again' });
     }
+
+    const token = jwt.sign({ id: user.id }, config.get('secretJwt'), { expiresIn: '1h' });
+    return res.json({
+      token,
+      user: {
+        id: user.id,
+        firstName: user.firstName,
+        secondName: user.secondName,
+        email: user.email,
+        diskSpace: user.diskSpace,
+        userSpace: user.usedSpace,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Server error login', error });
+  }
+});
+
+router.get('/auth', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findOne({ id: req.user.id });
 
     const token = jwt.sign({ id: user.id }, config.get('secretJwt'), { expiresIn: '1h' });
     return res.json({
