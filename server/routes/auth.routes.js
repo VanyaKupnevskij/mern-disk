@@ -4,7 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-const authMiddleware = require('../midleware/auth.middleware');
+const authMiddleware = require('../middleware/auth.middleware');
+const File = require('../models/File');
+const fileService = require('../services/fileService');
 
 const router = new Router();
 
@@ -37,6 +39,7 @@ router.post(
       const hashedPassword = await bcrypt.hash(password, 12);
       const user = new User({ firstName, secondName, email, password: hashedPassword });
       await user.save();
+      await fileService.createDir(new File({ user: user._id, name: '' }));
 
       return res.status(201).json({ message: `User ${firstName} was created seccuful!` });
     } catch (error) {

@@ -1,5 +1,6 @@
 {
   "serverPort": 5000,
   "dbUrl": "mongodb+srv://vanakupnevskij:vanya-1251007@disk.mhxbtqr.mongodb.net/?retryWrites=true&w=majority",
-  "secretJwt": "mern cloud_disk vanya"
+  "secretJwt": "mern cloud_disk vanya",
+  "filePath": "D:\\Projects\\React\\mern_disk\\server\\files"
 }
